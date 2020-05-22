@@ -1,5 +1,7 @@
+const url = 'https://wbdv-generic-server.herokuapp.com/api/001886456/courses';
+
 const createCourse = (course) =>
-    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses", {
+    fetch(url, {
         method: 'POST',
         body: JSON.stringify(course),
         headers: {
@@ -9,7 +11,7 @@ const createCourse = (course) =>
         .then(response => response.json());
 
 const updateCourse = (courseId, course) =>
-    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses/" + courseId, {
+    fetch(url + courseId, {
         method: 'PUT',
         body: JSON.stringify(course),
         headers: {
@@ -19,15 +21,18 @@ const updateCourse = (courseId, course) =>
         .then(response => response.json());
 
 const deleteCourse = (courseId) =>
-    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses/" + courseId, {
+    fetch(url + courseId, {
         method: 'DELETE'
     })
         .then(response => response.json());
 
 const findCourseById = (courseId) => {
+    return fetch(url + '/' + courseId)
+        .then(response => response.json());
 };
+
 const findAllCourses = () =>
-    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses")
+    fetch(url)
         .then(response => response.json());
 
 export default {
