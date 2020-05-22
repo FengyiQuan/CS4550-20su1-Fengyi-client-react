@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "react-router-dom";
+import {Link} from "react-router-dom";
 import courseService from '../services/CourseService'
 
 export default class CourseRowComponent extends React.Component {
@@ -8,7 +8,14 @@ export default class CourseRowComponent extends React.Component {
         course: this.props.course
     };
 
-    setEditing = (isEditing) => this.setState({editing: isEditing});
+    setEditing = (editing) =>
+        this.setState({editing: editing});
+
+    ok = () =>
+        courseService.updateCourse(
+            this.state.course._id,
+            this.state.course)
+            .then(status => this.setEditing(false));
 
     updateCourseTitle = (newTitle) =>
         this.setState(prevState => ({
@@ -17,12 +24,6 @@ export default class CourseRowComponent extends React.Component {
                 title: newTitle
             }
         }));
-
-    confirmChanges = () =>
-        courseService.updateCourse(
-            this.state.course._id,
-            this.state.course)
-            .then(status => this.setEditing(false));
 
     render() {
         return (
@@ -50,20 +51,21 @@ export default class CourseRowComponent extends React.Component {
                         <button
                             className="btn btn-primary"
                             onClick={() => this.setEditing(true)}>
-                            Edit
+                            <i className="fa fa-pencil"/>
                         </button>
                     }
                     {
                         this.state.editing &&
                         <span>
-                          <button onClick={this.ok}>
-                            Ok</button>
-                          <button
-                              className="btn btn-danger"
-                              onClick={
-                                  () => this.props.deleteCourse(this.props.course)}>
-                            Delete</button>
-                        </span>
+              <button className="btn btn-success"
+                      onClick={this.ok}>
+                  <i className="fa fa-check"/> </button>
+              <button
+                  className="btn btn-danger"
+                  onClick={
+                      () => this.props.deleteCourse(this.props.course)}>
+                  <i className="fa fa-trash"/></button>
+            </span>
                     }
                 </td>
             </tr>
