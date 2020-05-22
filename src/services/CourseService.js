@@ -1,69 +1,39 @@
-function AdminUserServiceClient() {
-    this.createUser = createUser;
-    this.findAllUsers = findAllUsers;
-    this.findUserById = findUserById;
-    this.deleteUser = deleteUser;
-    this.updateUser = updateUser;
-    this.url = 'https://wbdv-generic-server.herokuapp.com/api/001886456/users';
-    var self = this;
+const createCourse = (course) =>
+    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses", {
+        method: 'POST',
+        body: JSON.stringify(course),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json());
 
-    function createUser(user) {
-        console.log("creating user" + user);
-        const userString = JSON.stringify(user);
-        console.log(userString);
+const updateCourse = (courseId, course) =>
+    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses/" + courseId, {
+        method: 'PUT',
+        body: JSON.stringify(course),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json());
 
-        return fetch(self.url, {
-            method: "POST",
-            body: userString,
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(function (response) {
-                    return response.json();
-                }
-        )
-    }
+const deleteCourse = (courseId) =>
+    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses/" + courseId, {
+        method: 'DELETE'
+    })
+        .then(response => response.json());
 
-    function findAllUsers() {
-        return fetch(self.url)
-            .then(function (response) {
-                      return response.json()
-                  }
-            );
-    }
+const findCourseById = (courseId) => {
+};
+const findAllCourses = () =>
+    fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses")
+        .then(response => response.json());
 
-    function findUserById(userId) {
-        return fetch(self.url + '/' + userId)
-            .then(function (response) {
-                      return response.json()
-                  }
-            );
-    }
-
-    function updateUser(userId, user) {
-        return fetch(self.url + '/' + userId, {
-                         method: 'PUT',
-                         body: JSON.stringify(user),
-                         headers: {
-                             'content-type': 'application/json'
-                         }
-                     }
-        )
-            .then(function (response) {
-                      return response.json()
-                  }
-            );
-    }
-
-    function deleteUser(userId) {
-        console.log('removing user: ' + userId);
-        return fetch(self.url + '/' + userId, {
-                         method: 'DELETE'
-                     }
-        )
-            .then(function (response) {
-                      return response.json()
-                  }
-            );
-    }
+export default {
+    createCourse,
+    deleteCourse,
+    findCourseById,
+    findAllCourses,
+    updateCourse
 }
