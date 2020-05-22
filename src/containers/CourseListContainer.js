@@ -1,14 +1,15 @@
 import React from "react";
+// import CourseGridComponent from "../components/CourseGridComponent";
+import courseService from "../services/CourseService";
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
-import courseService from "../services/CourseService"
 
 class CourseListContainer
     extends React.Component {
     state = {
         layout: this.props.match.params.layout,
         courses: [],
-        newCourseTitle: 'New Title ABC'
+        newCourseTitle: 'New Title'
     };
 
     componentDidMount() {
@@ -51,7 +52,7 @@ class CourseListContainer
                                   ...prevState.courses,
                                   theActualNewCourse
                               ]
-                          };
+                          }
                       }));
 
     render() {
@@ -78,6 +79,7 @@ class CourseListContainer
                             Grid
                         </button>
                         <CourseTableComponent
+                            setLayout={this.setLayout}
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>
                     </div>
@@ -90,7 +92,9 @@ class CourseListContainer
                                 this.setLayout('table')}>
                             Table
                         </button>
-                        <CourseGridComponent courses={this.state.courses}/>
+                        <CourseGridComponent setLayout={this.setLayout}
+                                             deleteCourse={this.deleteCourse}
+                                             courses={this.state.courses}/>
                     </div>
                 }
             </div>
