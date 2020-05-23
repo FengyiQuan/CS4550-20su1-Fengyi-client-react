@@ -1,5 +1,4 @@
 import React from "react";
-// import CourseGridComponent from "../components/CourseGridComponent";
 import courseService from "../services/CourseService";
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
@@ -58,44 +57,31 @@ class CourseListContainer
     render() {
         return (
             <div>
-                <h2>Course List {this.state.courses.length}</h2>
-                <input
-                    onChange={(event) => this.setState({
-                                                           newCourseTitle: event.target.value
-                                                       })}
-                    value={this.state.newCourseTitle}
-                    placeholder="Course Title"/>
-                <button onClick={
-                    () => this.addCourse(this.state.newCourseTitle)}>
-                    Add Course
-                </button>
-                <br/>
+                <div className="input-group mb-3">
+                    <input className="form-control"
+                           onChange={(event) => this.setState({
+                                                                  newCourseTitle: event.target.value
+                                                              })}
+                           value={this.state.newCourseTitle}
+                           placeholder="Course Title"/>
+                    <button className="btn btn-outline-primary"
+                            onClick={
+                                () => this.addCourse(this.state.newCourseTitle)}>
+                        Add Course
+                    </button>
+                </div>
                 {
                     this.state.layout === 'table' &&
-                    <div>
-                        <button
-                            onClick={() =>
-                                this.setLayout('grid')}>
-                            Grid
-                        </button>
-                        <CourseTableComponent
-                            setLayout={this.setLayout}
-                            deleteCourse={this.deleteCourse}
-                            courses={this.state.courses}/>
-                    </div>
+                    <CourseTableComponent
+                        setLayout={this.setLayout}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
                 }
                 {
                     this.state.layout === 'grid' &&
-                    <div>
-                        <button
-                            onClick={() =>
-                                this.setLayout('table')}>
-                            Table
-                        </button>
-                        <CourseGridComponent setLayout={this.setLayout}
-                                             deleteCourse={this.deleteCourse}
-                                             courses={this.state.courses}/>
-                    </div>
+                    <CourseGridComponent setLayout={this.setLayout}
+                                         deleteCourse={this.deleteCourse}
+                                         courses={this.state.courses}/>
                 }
             </div>
         );
