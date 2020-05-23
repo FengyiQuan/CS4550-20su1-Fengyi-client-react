@@ -7,12 +7,20 @@ export default class CourseGridComponent
     render() {
         return (
             <div>
-                <div className="form-row">
-                    <i onClick={() => this.props.setLayout('table')}
-                       className="fa fa-list pr-2 fa-2x"/>
-                    <i className="fa fa-sort-alpha-asc fa-2x"/>
-                </div>
-                <br/>
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Owned by</th>
+                        <th>
+                            <i onClick={() => this.props.setLayout('table')}
+                               className="fa fa-list pr-2"/>
+                            <i className="fa fa-sort-alpha-asc"/>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+
                 <div
                     className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
                     {
