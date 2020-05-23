@@ -7,7 +7,6 @@ export default class CourseTableComponent
     render() {
         return (
             <div>
-                <h3>Course Table {this.props.courses.length}</h3>
                 <table className="table table-striped">
                     <thead>
                     <tr>
