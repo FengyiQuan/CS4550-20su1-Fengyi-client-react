@@ -1,65 +1,61 @@
 import React from "react";
 
-export default class ModuleList extends React.Component {
-    render() {
-        return (
-            <div>
-                <ul className="list-group">
-                    <li className="list-group-item list-group-item-dark list-group-item-action active
+const ModuleList = () =>
+    <div>
+        <ul className="list-group">
+            <li className="list-group-item list-group-item-dark list-group-item-action active
                            d-flex justify-content-between align-items-center">
-                        Module 1 - jQuery
-                        <span className="badge">
+                Module 1 - jQuery
+                <span className="badge">
                             <i className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action
                            d-flex justify-content-between align-items-center">
-                        Module 2 - React
-                        <span className="badge"><i
-                            className="fa fa-times fa-lg"/>
+                Module 2 - React
+                <span className="badge"><i
+                    className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action
                            d-flex justify-content-between align-items-center">
-                        Module 3 - Redux
-                        <span className="badge">
+                Module 3 - Redux
+                <span className="badge">
                             <i className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action
                            d-flex justify-content-between align-items-center">
-                        Module 4 - Native
-                        <span className="badge">
+                Module 4 - Native
+                <span className="badge">
                             <i className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action
                            d-flex justify-content-between align-items-center">
-                        Module 5 - Angular
-                        <span className="badge">
+                Module 5 - Angular
+                <span className="badge">
                             <i className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action
                            d-flex justify-content-between align-items-center">
-                        Module 6 - Node
-                        <span className="badge">
+                Module 6 - Node
+                <span className="badge">
                             <i className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action
                            d-flex justify-content-between align-items-center ">
-                        Module 7 - Mongo
-                        <span className="badge">
+                Module 7 - Mongo
+                <span className="badge">
                             <i className="fa fa-times fa-lg"/>
                         </span>
-                    </li>
-                    <li className="list-group-item list-group-item-dark list-group-item-action">
-                        <i className="fa fa-plus fa-lg float-right"/>
-                    </li>
-                </ul>
-            </div>
-        )
-    }
-}
+            </li>
+            <li className="list-group-item list-group-item-dark list-group-item-action">
+                <i className="fa fa-plus fa-lg float-right"/>
+            </li>
+        </ul>
+    </div>;
 
+export default ModuleList;
