@@ -1,27 +1,20 @@
 import React from 'react';
-import CourseTableComponent from "CourseTableComponent";
-import CourseGridComponent from "CourseGridComponent";
-import courseService from "../services/CourseService"
-
-import React from 'react'
 import {BrowserRouter, Route} from "react-router-dom";
+import CourseListContainer from "../containers/CourseListContainer";
+import CourseEditorComponent from "./CourseEditorComponent";
+import HomeComponent from "./HomeComponent";
 
-class WhiteBoard extends React.Component {
+export default class CourseManagerComponent extends React.Component {
     render() {
         return(
             <BrowserRouter>
                 <div>
-                    <h1>WhiteBoard !!!!</h1>
-
-                    <Route path="/login" exact={true} component={LoginComponent}/>
-
-                    {/*TODO: port over registraion, profile components*/}
+                    <h1>Course Manager !!!!</h1>
 
                     <Route
                         path='/'
                         exact={true}
-                        component={HomeComponent}
-                    />
+                        component={HomeComponent}/>
 
                     <Route
                         path='/courses'
@@ -36,12 +29,10 @@ class WhiteBoard extends React.Component {
                     <Route
                         path='/editor'
                         exact={true}
-                        component={CourseEditor}/>
+                        component={CourseEditorComponent}/>
 
                 </div>
             </BrowserRouter>
         )
     }
 }
-
-export default WhiteBoard
