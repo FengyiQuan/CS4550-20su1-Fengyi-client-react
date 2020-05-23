@@ -68,15 +68,15 @@ export default class CourseCardComponent extends React.Component {
                         {
                             this.state.editing &&
                             <span className="btn-group">
-                      <button className="btn btn-success"
-                              onClick={this.ok}>
-                          <i className="fa fa-check"/> </button>
-                      <button
-                          className="btn btn-danger"
-                          onClick={
-                              () => this.props.deleteCourse(this.props.course)}>
-                          <i className="fa fa-trash"/></button>
-                    </span>
+                              <button className="btn btn-success"
+                                      onClick={this.ok}>
+                                  <i className="fa fa-check"/> </button>
+                              <button
+                                  className="btn btn-danger"
+                                  onClick={
+                                      () => this.props.deleteCourse(this.props.course)}>
+                                  <i className="fa fa-trash"/></button>
+                            </span>
                         }
                     </div>
                 </div>
