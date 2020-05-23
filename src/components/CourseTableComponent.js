@@ -11,8 +11,8 @@ export default class CourseTableComponent
                     <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Owned by</th>
-                        <th>Last Modified</th>
+                        <th className="d-none d-sm-table-cell">Owned by</th>
+                        <th className="d-none d-md-table-cell">Last Modified</th>
                         <th>
                             <i onClick={() => this.props.setLayout('grid')}
                                className="fa fa-th pr-2"/>

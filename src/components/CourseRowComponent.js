@@ -43,8 +43,8 @@ export default class CourseRowComponent extends React.Component {
                             value={this.state.course.title}/>
                     }
                 </td>
-                <td>{this.state.course.owner}</td>
-                <td>{this.state.course.modified}</td>
+                <td className="d-none d-sm-table-cell">{this.state.course.owner}</td>
+                <td className="d-none d-md-table-cell">{this.state.course.modified}</td>
                 <td>
                     {
                         !this.state.editing &&
