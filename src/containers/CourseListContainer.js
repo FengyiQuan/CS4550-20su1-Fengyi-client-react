@@ -3,7 +3,7 @@ import courseService from "../services/CourseService";
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 
-class CourseListContainer
+export default class CourseListContainer
     extends React.Component {
     state = {
         layout: this.props.match.params.layout,
@@ -87,5 +87,3 @@ class CourseListContainer
         );
     }
 }
-
-export default CourseListContainer;
