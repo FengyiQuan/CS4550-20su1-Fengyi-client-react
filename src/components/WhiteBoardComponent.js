@@ -6,7 +6,7 @@ import HomeComponent from "./HomeComponent";
 
 export default class WhiteBoardComponent extends React.Component {
     render() {
-        return(
+        return (
             <BrowserRouter>
                 <div>
                     <h1>Course Manager !!!!</h1>
@@ -15,11 +15,6 @@ export default class WhiteBoardComponent extends React.Component {
                         path='/'
                         exact={true}
                         component={HomeComponent}/>
-
-                    <Route
-                        path='/courses'
-                        exact={true}
-                        component={CourseManagerContainer}/>
 
                     <Route
                         path='/:layout/courses'
