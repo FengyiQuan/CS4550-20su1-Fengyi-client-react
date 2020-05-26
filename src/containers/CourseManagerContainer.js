@@ -3,7 +3,7 @@ import courseService from "../services/CourseService";
 import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 
-export default class CourseListContainer
+export default class CourseManagerContainer
     extends React.Component {
     state = {
         layout: this.props.match.params.layout,

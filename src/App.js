@@ -1,10 +1,10 @@
 import React from 'react';
-import CourseManagerComponent from "./components/CourseManagerComponent";
+import WhiteBoardComponent from "./components/WhiteBoardComponent";
 
 function App() {
     return (
         <div className="container">
-            <CourseManagerComponent/>
+            <WhiteBoardComponent/>
         </div>
     );
 }
