@@ -11,6 +11,15 @@ const HomeComponent = () =>
             <Link className="list-group-item" to='/table/courses'>
                 Course List
             </Link>
+            <Link className="list-group-item" to='/login'>
+                Login
+            </Link>
+            <Link className="list-group-item" to='/register'>
+                Registration
+            </Link>
+            <Link className="list-group-item" to='/profile'>
+                Profile
+            </Link>
         </div>
     </div>;
 
