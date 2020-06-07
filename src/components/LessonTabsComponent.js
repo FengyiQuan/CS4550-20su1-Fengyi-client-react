@@ -1,49 +1,98 @@
 import React from "react";
-import {Link} from "react-router-dom";
 
-const LessonTabsComponent = () =>
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <button className="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"/>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav">
-                <li className="nav-item ">
-                    <Link to="table/courses">
-                        <i className="fa fa-times"/>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">CS5610 - WebDev</a>
-                </li>
-                <li className="nav-item ">
-                    <a className="nav-link" href="#">Build</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link active" href="#">Pages</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Theme</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Store</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Apps</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Settings</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">
-                        <i className="fa fa-plus"/>
-                    </a>
-                </li>
-            </ul>
+export default class LessonTabsComponent extends React.Component {
+    state = {
+        editingLesson: {}
+    };
 
-        </div>
-    </nav>;
+    componentDidMount() {
+        this.props.findLessonsForModule(this.props.params.moduleId)
+    }
 
-export default LessonTabsComponent;
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.params.moduleId !== this.props.params.moduleId) {
+            this.props.findLessonsForModule(this.props.params.moduleId)
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>Lesson Tabs {this.props.params.moduleId}</h3>
+                <ul className="nav nav-tabs">
+                    {this.props.lessons.map(
+                        lesson =>
+                            <div key={lesson._id}>
+                                {this.state.editingLesson._id
+                                 === lesson._id &&
+                                 <li
+                                     className="nav-item active">
+                                     <span>
+
+                                     <input
+                                         onChange={(e) => {
+                                             const newTitle = e.target.value;
+                                             this.setState(prevState => ({
+                                                 editingLesson: {
+                                                     ...prevState.editingLesson,
+                                                     title: newTitle
+                                                 }
+                                             }))
+                                         }
+                                         }
+                                         value={this.state.editingLesson.title}
+                                     />
+                                        <button className="btn btn-danger"
+                                                onClick={() => this.props.deleteLesson(lesson._id)}>
+                                        <i className="fa fa-trash"/>
+                                        </button>
+                                        <button
+                                            className="btn btn-success"
+                                            onClick={() => {
+                                                this.props.updateLesson(
+                                                    this.state.editingLesson._id,
+                                                    this.state.editingLesson);
+                                                this.setState({editingLesson: {}})
+                                            }
+                                            }>
+                                        <i className="fa fa-check"/>
+                                            </button>
+                                     </span>
+                                 </li>}
+
+
+                                {
+                                    this.state.editingLesson._id
+                                    !== lesson._id &&
+                                    <li
+                                        className="nav-item">
+                                        <span>
+
+                                            <a className={"active"}
+                                               href="#">
+                                                {lesson.title}
+                                            </a>
+
+                                            <button className="btn btn-primary"
+                                                    onClick={() => this.setState(
+                                                        {editingLesson: lesson})}>
+                                                <i className="fa fa-pencil"/>
+                                            </button>
+                                        </span>
+                                    </li>
+                                }
+                            </div>)}
+                </ul>
+
+                <button onClick={() => this.props.createLesson(
+                    this.props.params.moduleId,
+                    {
+                        title: 'New Lesson'
+                    })}>
+                    Add
+                </button>
+            </div>
+        )
+    }
+}
+

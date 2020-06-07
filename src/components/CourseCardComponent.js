@@ -36,8 +36,7 @@ export default class CourseCardComponent extends React.Component {
                         <h5 className="card-title">
                             {
                                 !this.state.editing &&
-                                <Link to='/editor'>
-                                    {/*{`/editor/${this.state.course._id}`}>*/}
+                                <Link to={`/editor/${this.state.course._id}`}>
                                     {this.state.course.title}
                                 </Link>
                             }
