@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {combineReducers, createStore} from "redux";
+import {Provider, connect} from "react-redux"
+import ModuleReducer from './reducers/ModuleReducer'
+import LessonReducer from "./reducers/LessonReducer";
+import TopicReducer from "./reducers/TopicReducer";
 
+const reducers = combineReducers({
+                                     ModuleReducer, LessonReducer, TopicReducer
+                                 });
+const store = createStore(reducers);
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
