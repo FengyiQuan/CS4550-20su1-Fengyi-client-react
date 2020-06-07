@@ -27,7 +27,7 @@ const deleteCourse = (courseId) =>
         .then(response => response.json());
 
 const findCourseById = (courseId) => {
-    return fetch(url + '/' + courseId)
+    return fetch(url + courseId)
         .then(response => response.json());
 };
 
