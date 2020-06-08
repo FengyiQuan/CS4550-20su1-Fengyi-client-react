@@ -29,18 +29,20 @@ const dispatchToPropertyMapper = (dispatch) => ({
                                             }))
     },
     deleteLesson: (lessonId) => {
-        deleteLesson(lessonId).then(status => dispatch({
-                                                           type: "DELETE_LESSON",
-                                                           lessonId: lessonId
-                                                       }))
+        deleteLesson(lessonId)
+            .then(status => dispatch({
+                                         type: "DELETE_LESSON",
+                                         lessonId: lessonId
+                                     }))
 
     },
 
     updateLesson: (lessonId, lesson) => {
-        updateLesson(lessonId, lesson).then(status => dispatch({
-                                                                   type: 'UPDATE_LESSON',
-                                                                   updatedLesson: lesson
-                                                               }))
+        updateLesson(lessonId, lesson)
+            .then(status => dispatch({
+                                         type: 'UPDATE_LESSON',
+                                         updatedLesson: lesson
+                                     }))
     },
     findLesson: (lessonId) => {
         findLesson(lessonId).then(status => dispatch({

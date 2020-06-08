@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default class LessonTabsComponent extends React.Component {
     state = {
@@ -18,7 +19,7 @@ export default class LessonTabsComponent extends React.Component {
     render() {
         return (
             <div>
-                <h3>Lesson Tabs {this.props.params.moduleId}</h3>
+                <h3>Lesson Tabs moduleID: {this.props.params.moduleId}</h3>
                 <ul className="nav nav-tabs">
                     {this.props.lessons.map(
                         lesson =>
@@ -67,11 +68,10 @@ export default class LessonTabsComponent extends React.Component {
                                     <li
                                         className="nav-item">
                                         <span>
-
-                                            <a className={"active"}
-                                               href="#">
+                                            <Link
+                                                to={`/editor/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${lesson._id}`}>
                                                 {lesson.title}
-                                            </a>
+                                            </Link>
 
                                             <button className="btn btn-primary"
                                                     onClick={() => this.setState(

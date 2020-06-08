@@ -6,27 +6,26 @@ export default class TopicPillsComponent extends React.Component {
         editingTopic: {}
     };
 
-    // componentDidMount() {
-    //     this.props.findLessonsForModule(this.props.params.lessonId)
-    // }
-    //
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     if (prevProps.params.lessonId !== this.props.params.lessonId) {
-    //         this.props.findLessonsForModule(this.props.params.lessonId)
-    //     }
-    // }
+    componentDidMount() {
+        this.props.findTopicsForLesson(this.props.params.lessonId);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.params.lessonId !== this.props.params.lessonId) {
+            this.props.findTopicsForLesson(this.props.params.lessonId)
+        }
+    }
 
     render() {
         return (
             <div>
-                <h3>Lesson Tabs {this.props.params.lessonId}</h3>
+                <h3>Topic Pills lessonID: {this.props.params.lessonId}</h3>
                 <ul className="nav nav-tabs">
                     {this.props.topics.map(
                         topic =>
-                            <div>
-                                {this.state.editingTopic._id
-                                 === topic._id &&
-                                 <li key={topic._id}
+                            <div key={topic._id}>
+                                {this.state.editingTopic._id === topic._id &&
+                                 <li
                                      className="nav-item">
                                      <span>
 
@@ -44,13 +43,13 @@ export default class TopicPillsComponent extends React.Component {
                                          value={this.state.editingTopic.title}
                                      />
                                         <button className="btn btn-danger"
-                                                onClick={() => this.props.deleteModule(topic._id)}>
+                                                onClick={() => this.props.deleteTopic(topic._id)}>
                                         <i className="fa fa-trash"/>
                                         </button>
                                         <button
                                             className="btn btn-success"
                                             onClick={() => {
-                                                this.props.updateModule(
+                                                this.props.updateTopic(
                                                     this.state.editingTopic._id,
                                                     this.state.editingTopic);
                                                 this.setState({editingTopic: {}})
@@ -70,13 +69,13 @@ export default class TopicPillsComponent extends React.Component {
                                         <span>
 
                                         <Link
-                                            to={`/editor/${this.props.params.courseId}/modules/${topic._id}`}>
+                                            to={`/editor/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${this.props.params.lessonId}/topics/${topic._id}`}>
                                         {topic.title}
                                         </Link>
 
                                         <button className="btn btn-primary"
                                                 onClick={() => this.setState(
-                                                    {v: topic})}>
+                                                    {editingTopic: topic})}>
                                         <i className="fa fa-pencil"/>
                                         </button>
                                         </span></li>
@@ -85,8 +84,8 @@ export default class TopicPillsComponent extends React.Component {
 
 
                 </ul>
-                <button onClick={() => this.props.createLesson(
-                    this.props.params.moduleId,
+                <button onClick={() => this.props.createTopic(
+                    this.props.params.lessonId,
                     {
                         title: 'New Topic'
                     })}>

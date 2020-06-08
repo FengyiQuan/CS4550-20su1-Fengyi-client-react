@@ -18,7 +18,6 @@ export const findLesson = (lessonId) => {
 }
 
 export const deleteLesson = (lessonId) => {
-    console.log(`https://wbdv-generic-server.herokuapp.com/api/001886456/lessons/${lessonId}`)
     return fetch(`https://wbdv-generic-server.herokuapp.com/api/001886456/lessons/${lessonId}`, {
         method: 'DELETE'
     })

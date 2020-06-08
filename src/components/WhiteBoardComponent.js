@@ -28,7 +28,9 @@ export default class WhiteBoardComponent extends React.Component {
                         component={CourseManagerContainer}/>
 
                     <Route
-                        path={['/editor/:courseId', '/editor/:courseId/modules/:moduleId']}
+                        path={['/editor/:courseId', '/editor/:courseId/modules/:moduleId',
+                               `/editor/:courseId/modules/:moduleId/lessons/:lessonId`,
+                               `/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId`]}
                         exact={true}
                         component={CourseEditorComponent}/>
 
