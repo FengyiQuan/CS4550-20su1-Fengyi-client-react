@@ -15,7 +15,7 @@ export default class ModuleListComponent extends React.Component {
         <div>
             {this.state.editingModule._id === module._id &&
              <span>
-                 <input
+                 <input className="form-control"
                      onChange={(e) => {
                          const newTitle = e.target.value;
                          this.setState(prevState => ({
@@ -88,7 +88,7 @@ export default class ModuleListComponent extends React.Component {
                                 </div>
                         )}
                 </ul>
-                <input
+                <input className="form-control"
                     onChange={(event) =>
                         this.setState({
                                           newModuleTitle: event.target.value
@@ -103,7 +103,7 @@ export default class ModuleListComponent extends React.Component {
                                 title: this.state.newModuleTitle
                             })}>
 
-                    <i className="btn fa fa-plus fa-lg"/>
+                    <i className="fa fa-plus fa-lg"/>
                 </button>
             </div>
         )

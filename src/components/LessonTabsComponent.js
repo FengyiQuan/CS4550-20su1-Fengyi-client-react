@@ -50,16 +50,17 @@ export default class LessonTabsComponent extends React.Component {
 
             {isEditing &&
              <span>
-                     <input onChange={(e) => {
-                         const newTitle = e.target.value;
-                         this.setState(prevState => ({
-                             editingLesson: {
-                                 ...prevState.editingLesson,
-                                 title: newTitle
-                             }
-                         }))
-                     }
-                     }
+                     <input className="form-control"
+                            onChange={(e) => {
+                                const newTitle = e.target.value;
+                                this.setState(prevState => ({
+                                    editingLesson: {
+                                        ...prevState.editingLesson,
+                                        title: newTitle
+                                    }
+                                }))
+                            }
+                            }
                             value={this.state.editingLesson.title}
                      />
                      <button className="btn btn-danger"
@@ -98,16 +99,18 @@ export default class LessonTabsComponent extends React.Component {
                             </div>)}
                 </ul>
 
-                <button onClick={() => {
-                    if (this.props.params.moduleId !== undefined) {
-                        this.props.createLesson(
-                            this.props.params.moduleId,
-                            {
-                                title: 'New Lesson'
-                            })
-                    }
-                }}>
-                    Add
+                <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                        if (this.props.params.moduleId !== undefined) {
+                            this.props.createLesson(
+                                this.props.params.moduleId,
+                                {
+                                    title: 'New Lesson'
+                                })
+                        }
+                    }}>
+                    <i className="fa fa-plus fa-lg"/>
                 </button>
             </div>
         )
