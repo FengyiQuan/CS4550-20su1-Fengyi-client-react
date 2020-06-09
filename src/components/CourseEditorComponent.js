@@ -34,6 +34,7 @@ export default class CourseEditorComponent extends React.Component {
                 <h1>{this.state.title}</h1>
                 {/*{this.props.match.params.courseId}*/}
 
+
                 <div className="row">
                     <div className="col-4">
                         <ModuleListContainer {...this.props.match}/>
