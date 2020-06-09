@@ -36,7 +36,7 @@ export default class LessonTabsComponent extends React.Component {
             {!isEditing &&
              <span>
                 <Link
-                    to={`/editor/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${lesson._id}`}>
+                    to={`/editor/course/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${lesson._id}`}>
                     {lesson.title}
                 </Link>
 
@@ -86,7 +86,9 @@ export default class LessonTabsComponent extends React.Component {
     render() {
         return (
             <div>
-                <h3>Lesson Tabs moduleID: {this.props.params.moduleId}</h3>
+                <h3>Lesson Tabs
+                    {/*moduleID: {this.props.params.moduleId}*/}
+                </h3>
                 <ul className="nav nav-tabs">
                     {this.props.lessons.map(
                         lesson =>

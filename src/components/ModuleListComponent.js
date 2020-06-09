@@ -52,7 +52,7 @@ export default class ModuleListComponent extends React.Component {
                 <span>
 
                     <Link
-                        to={`/editor/${this.props.params.courseId}/modules/${module._id}`}>
+                        to={`/editor/course/${this.props.params.courseId}/modules/${module._id}`}>
                         {module.title}
                     </Link>
 

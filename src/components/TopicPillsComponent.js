@@ -70,7 +70,7 @@ export default class TopicPillsComponent extends React.Component {
                 <span className="nav-link">
 
                     <Link
-                        to={`/editor/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${this.props.params.lessonId}/topics/${topic._id}`}>
+                        to={`/editor/course/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${this.props.params.lessonId}/topics/${topic._id}`}>
                     {topic.title}
                     </Link>
 
@@ -87,7 +87,9 @@ export default class TopicPillsComponent extends React.Component {
         return (
 
             <div>
-                <h3>Topic Pills lessonID: {this.props.params.lessonId}</h3>
+                <h3>Topic Pills
+                    {/*lessonID: {this.props.params.lessonId}*/}
+                </h3>
                 <ul className="nav nav-pills">
                     {this.props.topics.map(
                         topic =>

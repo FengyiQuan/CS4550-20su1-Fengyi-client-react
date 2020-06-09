@@ -32,7 +32,7 @@ export default class CourseEditorComponent extends React.Component {
                 </div>
 
                 <h1>{this.state.title}</h1>
-                {this.props.match.params.courseId}
+                {/*{this.props.match.params.courseId}*/}
 
                 <div className="row">
                     <div className="col-4">
