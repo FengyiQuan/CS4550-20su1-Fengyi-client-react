@@ -3,7 +3,9 @@ import {Link} from "react-router-dom";
 import ModuleListContainer from "../containers/ModuleListContainer";
 import LessonTabsContainer from "../containers/LessonTabsContainer";
 import TopicPillsContainer from "../containers/TopicPillsContainer";
+import WidgetListContainer from "../containers/WidgetListContainer";
 import CourseService from "../services/CourseService";
+import WidgetListComponent from "./WidgetListComponent";
 
 export default class CourseEditorComponent extends React.Component {
     constructor(props) {
@@ -42,7 +44,7 @@ export default class CourseEditorComponent extends React.Component {
                     <div className="col-8">
                         <LessonTabsContainer {...this.props.match}/>
                         <TopicPillsContainer {...this.props.match}/>
-                        <h3>Widget List</h3>
+                        <WidgetListContainer {...this.props.match}/>
                     </div>
                 </div>
             </div>
