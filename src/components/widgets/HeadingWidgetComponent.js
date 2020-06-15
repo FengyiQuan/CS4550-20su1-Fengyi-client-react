@@ -39,7 +39,7 @@ export default class HeadingWidgetComponent extends React.Component {
     render() {
         return <div>
             <div className={'form-row'}>
-                <h3>Heading Widget{this.state.order}</h3>
+                <h3>Heading Widget</h3>
                 {this.state.editing &&
                  <span>
                          <select value={this.state.size}

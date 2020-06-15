@@ -35,7 +35,7 @@ export default class ParagraphWidgetComponent extends React.Component {
         return (
             <div>
                 <div>
-                    <h3>Paragraph Widget{this.state.order}</h3>
+                    <h3>Paragraph Widget</h3>
                     {this.state.editing &&
                      <span className='float-right'>
                          {
