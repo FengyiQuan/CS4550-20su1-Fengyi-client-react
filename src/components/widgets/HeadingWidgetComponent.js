@@ -4,7 +4,7 @@ export default class HeadingWidgetComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editing: true,
+            editing: false,
             name: '',
             type: 'heading',
             text: '',
