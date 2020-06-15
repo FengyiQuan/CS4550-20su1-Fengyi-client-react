@@ -5,7 +5,6 @@ import LessonTabsContainer from "../containers/LessonTabsContainer";
 import TopicPillsContainer from "../containers/TopicPillsContainer";
 import WidgetListContainer from "../containers/WidgetListContainer";
 import CourseService from "../services/CourseService";
-import WidgetListComponent from "./WidgetListComponent";
 
 export default class CourseEditorComponent extends React.Component {
     constructor(props) {

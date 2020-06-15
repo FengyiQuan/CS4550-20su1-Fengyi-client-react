@@ -15,7 +15,17 @@ export default class WidgetListComponent extends React.Component {
         }
     }
 
+    // moveDown = w => {
+    //     this.props.widgets.map(widget => {
+    //         if (widget.widgetOrder < w.widgetOrder) {
+    //             this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder -
+    // 1}) } else if (widget.widgetOrder === w.widgetOrder) { this.props.updateWidget(widget.id,
+    // {...widget, widgetOrder: widget.widgetOrder - 1}) } else {
+    // this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder + 1}) }
+    // return widget; }) }
+
     render() {
+        // console.log(this.props.widgets)
         return (
             <div>
                 <h2>Widget List</h2>
@@ -25,38 +35,34 @@ export default class WidgetListComponent extends React.Component {
                                                 <li key={widget.id}>{widget.id}
                                                     {
                                                         widget.type === 'HEADING' &&
-                                                        <HeadingWidgetComponent widget={widget}/>
+                                                        <HeadingWidgetComponent widget={widget}
+                                                                                updateWidget={this.props.updateWidget}
+                                                                                deleteWidget={this.props.deleteWidget}/>
                                                     }
                                                     {
                                                         widget.type === 'PARAGRAPH' &&
-                                                        <ParagraphWidgetComponent widget={widget}/>
+                                                        <ParagraphWidgetComponent widget={widget}
+                                                                                  updateWidget={this.props.updateWidget}
+                                                                                  deleteWidget={this.props.deleteWidget}/>
                                                     }
                                                     {
                                                         widget.type === 'YOUTUBE' &&
-                                                        <YouTubeWidgetComponent widget={widget}/>
+                                                        <YouTubeWidgetComponent widget={widget}
+                                                                                updateWidget={this.props.updateWidget}
+                                                                                deleteWidget={this.props.deleteWidget}/>
                                                     }
-                                                    <div>
-                                                        <button>Edit</button>
-                                                        <button>Save</button>
-                                                        <button
-                                                            onClick={() => this.props.deleteWidget(
-                                                                widget.id)}>
-                                                            Delete
-                                                        </button>
-                                                        <button>Move Up</button>
-                                                        <button>Move Down</button>
-                                                    </div>
                                                 </li>)
                     }
                 </ul>
-                <button onClick={() => {
+                <button className={'btn btn-primary'}
+                    onClick={() => {
                     if (this.props.params.topicId !== undefined) {
                         this.props.createWidget(this.props.params.topicId, {
-                            type: 'HEADING', name: 'New Widget'
+                            type: 'HEADING', name: 'New Widget', size: 1
                         })
                     }
                 }}>
-                    Create Widget
+                    <i className={'fa fa-plus'}/>
                 </button>
             </div>
         )
