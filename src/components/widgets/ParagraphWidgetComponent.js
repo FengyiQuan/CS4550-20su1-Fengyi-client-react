@@ -35,11 +35,11 @@ export default class ParagraphWidgetComponent extends React.Component {
         return (
             <div>
                 <div>
-                    <h3>Paragraph Widget</h3>
+                    <h3>Paragraph Widget{this.state.order}</h3>
                     {this.state.editing &&
                      <span className='float-right'>
                          {
-                             this.props.widget.widgetOrder !== 1 &&
+                             this.state.order !== 1 &&
                              <button className={'btn btn-warning'}
                                      onClick={() => this.props.moveUp(
                                          this.props.widget)}>
