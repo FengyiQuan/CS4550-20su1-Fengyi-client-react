@@ -1,9 +1,5 @@
 const initialState = {
-    widgets: [
-        {id: 123, name: 'Widget AAA'},
-        {id: 234, name: 'Widget BBB'},
-        {id: 345, name: 'Widget CCC'}
-    ]
+    widgets: []
 };
 
 const widgetReducer = (state = initialState, action) => {
@@ -22,6 +18,13 @@ const widgetReducer = (state = initialState, action) => {
             return {
                 ...state,
                 widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
+            };
+        case "UPDATE_WIDGET":
+            return {
+                ...state,
+                widgets: state.widgets.map(
+                    widget => widget.id === action.updatedWidget.id ?
+                              action.updatedWidget : widget)
             };
         default:
             return state;

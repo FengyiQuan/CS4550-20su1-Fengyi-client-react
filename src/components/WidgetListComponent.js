@@ -11,57 +11,111 @@ export default class WidgetListComponent extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.params.topicId !== this.props.params.topicId) {
-            this.props.findWidgetsForTopic(this.props.params.topicId)
+            this.props.findWidgetsForTopic(this.props.params.topicId);
         }
-    }
+    };
 
-    // moveDown = w => {
-    //     this.props.widgets.map(widget => {
-    //         if (widget.widgetOrder < w.widgetOrder) {
-    //             this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder -
-    // 1}) } else if (widget.widgetOrder === w.widgetOrder) { this.props.updateWidget(widget.id,
-    // {...widget, widgetOrder: widget.widgetOrder - 1}) } else {
-    // this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder + 1}) }
-    // return widget; }) }
+    moveDown = select => {
+        let current = select.widgetOrder;
+        this.props.widgets.forEach(widget => {
+            if (widget.widgetOrder === current) {
+                this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder + 1})
+            } else if (widget.widgetOrder === current + 1) {
+                this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder - 1})
+            }
+        })
+    };
+    moveUp = select => {
+        let current = select.widgetOrder;
+        this.props.widgets.forEach(widget => {
+            if (widget.widgetOrder === current) {
+                this.props.updateWidget(widget.id,
+                                        {...widget, widgetOrder: widget.widgetOrder - 1})
+            } else if (widget.widgetOrder === current - 1) {
+                this.props.updateWidget(widget.id, {...widget, widgetOrder: widget.widgetOrder + 1})
+            }
+        })
+    };
+
+    delete = (select) => {
+        this.props.deleteWidget(select.id);
+        this.props.widgets.forEach(widget => {
+            if (widget.widgetOrder > select.widgetOrder) {
+                this.props.updateWidget(widget.id,
+                                        {...widget, widgetOrder: widget.widgetOrder - 1})
+            }
+        })
+    };
+
+    generateWidgetList = () => {
+        let copy = this.props.widgets.slice(0);
+        copy.sort((a, b) => {
+            if (a.widgetOrder > b.widgetOrder) {
+                return 1;
+            } else if (a.widgetOrder < b.widgetOrder) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        return copy.map(widget =>
+                            <li key={widget.id}
+                                className="list-group-item">
+                                {
+                                    widget.type === 'HEADING' &&
+                                    <HeadingWidgetComponent widget={widget}
+                                                            updateWidget={this.props.updateWidget}
+                                                            delete={this.delete}
+                                                            moveUp={this.moveUp}
+                                                            moveDown={this.moveDown}
+                                                            isLast={widget.widgetOrder
+                                                                    === this.props.widgets.length}/>
+                                }
+                                {
+                                    widget.type === 'PARAGRAPH' &&
+                                    <ParagraphWidgetComponent widget={widget}
+                                                              updateWidget={this.props.updateWidget}
+                                                              delete={this.delete}
+                                                              moveUp={this.moveUp}
+                                                              moveDown={this.moveDown}
+                                                              isLast={widget.widgetOrder
+                                                                      === this.props.widgets.length}/>
+                                }
+                                {
+                                    widget.type === 'YOUTUBE' &&
+                                    <YouTubeWidgetComponent widget={widget}
+                                                            updateWidget={this.props.updateWidget}
+                                                            delete={this.delete}
+                                                            moveUp={this.moveUp}
+                                                            moveDown={this.moveDown}
+                                                            isLast={widget.widgetOrder
+                                                                    === this.props.widgets.length}/>
+                                }
+                            </li>)
+
+    };
 
     render() {
-        // console.log(this.props.widgets)
+        // console.log(this.props.widgets);
         return (
             <div>
                 <h2>Widget List</h2>
-                <ul>
+                <ul className="list-group">
                     {this.props.params.topicId !== undefined &&
-                     this.props.widgets.map(widget =>
-                                                <li key={widget.id}>{widget.id}
-                                                    {
-                                                        widget.type === 'HEADING' &&
-                                                        <HeadingWidgetComponent widget={widget}
-                                                                                updateWidget={this.props.updateWidget}
-                                                                                deleteWidget={this.props.deleteWidget}/>
-                                                    }
-                                                    {
-                                                        widget.type === 'PARAGRAPH' &&
-                                                        <ParagraphWidgetComponent widget={widget}
-                                                                                  updateWidget={this.props.updateWidget}
-                                                                                  deleteWidget={this.props.deleteWidget}/>
-                                                    }
-                                                    {
-                                                        widget.type === 'YOUTUBE' &&
-                                                        <YouTubeWidgetComponent widget={widget}
-                                                                                updateWidget={this.props.updateWidget}
-                                                                                deleteWidget={this.props.deleteWidget}/>
-                                                    }
-                                                </li>)
-                    }
+                     this.generateWidgetList()}
                 </ul>
                 <button className={'btn btn-primary'}
-                    onClick={() => {
-                    if (this.props.params.topicId !== undefined) {
-                        this.props.createWidget(this.props.params.topicId, {
-                            type: 'HEADING', name: 'New Widget', size: 1
-                        })
-                    }
-                }}>
+                        onClick={() => {
+                            if (this.props.params.topicId !== undefined) {
+                                this.props.createWidget(this.props.params.topicId, {
+                                    type: 'HEADING',
+                                    name: 'New Widget',
+                                    size: 1,
+                                    text: '',
+                                    widgetOrder: this.props.widgets.length + 1
+                                })
+                            }
+                        }}>
                     <i className={'fa fa-plus'}/>
                 </button>
             </div>

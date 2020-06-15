@@ -1,4 +1,9 @@
-import {createWidget, deleteWidget, findWidgetsForTopic} from "../services/WidgetService";
+import {
+    createWidget,
+    deleteWidget,
+    findWidgetsForTopic,
+    updateWidget
+} from "../services/WidgetService";
 import {connect} from "react-redux";
 import WidgetListComponent from "../components/WidgetListComponent";
 
@@ -28,7 +33,15 @@ const dispatchToPropertyMapper = (dispatcher) => ({
                       dispatcher({
                                      type: "FIND_WIDGETS_FOR_TOPIC",
                                      widgetsFromServer: actualWidgetsFromServer
+                                 })),
+    updateWidget: (wid, widget) =>
+        updateWidget(wid, widget)
+            .then(status =>
+                      dispatcher({
+                                     type: "UPDATE_WIDGET",
+                                     updatedWidget: widget
                                  }))
+
 });
 
 const WidgetListContainer = connect(

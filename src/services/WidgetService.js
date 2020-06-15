@@ -17,3 +17,15 @@ export const createWidget = (tid, widget) =>
         }
     })
         .then(response => response.json());
+
+export const findWidgetById = (wid) =>
+    fetch(`http://localhost:8080/api/widgets/${wid}`).then(response => response.json());
+
+export const updateWidget = (wid, widget) =>
+    fetch(`http://localhost:8080/api/widgets/${wid}`, {
+        method: 'PUT',
+        body: JSON.stringify(widget),
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
