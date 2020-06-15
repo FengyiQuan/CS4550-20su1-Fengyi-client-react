@@ -9,7 +9,7 @@ export const deleteWidget = (wid) =>
         .then(response => response.json());
 
 export const createWidget = (tid, widget) =>
-    fetch(`http://localhost:8080/api/topics/${tid}/widgets`, {
+    fetch(`https://cs4550-20su1-fengyi-ass5.herokuapp.com//api/topics/${tid}/widgets`, {
         method: 'POST',
         body: JSON.stringify(widget),
         headers: {
@@ -19,10 +19,10 @@ export const createWidget = (tid, widget) =>
         .then(response => response.json());
 
 export const findWidgetById = (wid) =>
-    fetch(`http://localhost:8080/api/widgets/${wid}`).then(response => response.json());
+    fetch(`https://cs4550-20su1-fengyi-ass5.herokuapp.com//api/widgets/${wid}`).then(response => response.json());
 
 export const updateWidget = (wid, widget) =>
-    fetch(`http://localhost:8080/api/widgets/${wid}`, {
+    fetch(`https://cs4550-20su1-fengyi-ass5.herokuapp.com//api/widgets/${wid}`, {
         method: 'PUT',
         body: JSON.stringify(widget),
         headers: {
