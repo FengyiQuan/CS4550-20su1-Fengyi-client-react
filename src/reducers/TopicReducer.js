@@ -6,7 +6,7 @@ const TopicReducer = (state = initialState, action) => {
     switch (action.type) {
         case "DELETE_TOPIC":
             return {
-                topics: state.topics.filter(lesson => lesson._id !== action.topicId)
+                topics: state.topics.filter(topic => topic.id !== action.topicId)
             };
         case "FIND_TOPICS_FOR_LESSON":
             return {
@@ -28,7 +28,7 @@ const TopicReducer = (state = initialState, action) => {
             return {
                 ...state,
                 topics: state.topics.map(
-                    topic => topic._id === action.updatedTopic._id ?
+                    topic => topic.id === action.updatedTopic.id ?
                              action.updatedTopic : topic)
             };
         default:

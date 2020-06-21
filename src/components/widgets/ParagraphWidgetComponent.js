@@ -126,6 +126,7 @@ export default class ParagraphWidgetComponent extends React.Component {
                                      onChange={(e) => this.setState({type: e.target.value})}>
                                  <option value='HEADING'>Heading</option>
                                  <option value='PARAGRAPH'>Paragraph</option>
+                                 <option value='IMAGE'>Image</option>
                              </select>
                          </div>
                      </div>

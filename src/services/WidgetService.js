@@ -1,15 +1,17 @@
+const url = 'http://localhost:8080';
+
 export const findWidgetsForTopic = (tid) =>
-    fetch(`http://localhost:8080/api/topics/${tid}/widgets`)
+    fetch(`${url}/api/topics/${tid}/widgets`)
         .then(response => response.json());
 
 export const deleteWidget = (wid) =>
-    fetch(`http://localhost:8080/api/widgets/${wid}`, {
+    fetch(`${url}/api/widgets/${wid}`, {
         method: 'DELETE'
     })
         .then(response => response.json());
 
 export const createWidget = (tid, widget) =>
-    fetch(`https://cs4550-20su1-fengyi-ass5.herokuapp.com//api/topics/${tid}/widgets`, {
+    fetch(`${url}/api/topics/${tid}/widgets`, {
         method: 'POST',
         body: JSON.stringify(widget),
         headers: {
@@ -19,10 +21,11 @@ export const createWidget = (tid, widget) =>
         .then(response => response.json());
 
 export const findWidgetById = (wid) =>
-    fetch(`https://cs4550-20su1-fengyi-ass5.herokuapp.com//api/widgets/${wid}`).then(response => response.json());
+    fetch(`${url}/api/widgets/${wid}`)
+        .then(response => response.json());
 
 export const updateWidget = (wid, widget) =>
-    fetch(`https://cs4550-20su1-fengyi-ass5.herokuapp.com//api/widgets/${wid}`, {
+    fetch(`${url}/api/widgets/${wid}`, {
         method: 'PUT',
         body: JSON.stringify(widget),
         headers: {

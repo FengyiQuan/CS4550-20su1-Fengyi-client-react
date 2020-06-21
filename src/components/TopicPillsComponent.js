@@ -8,7 +8,9 @@ export default class TopicPillsComponent extends React.Component {
     };
 
     componentDidMount() {
-        this.props.findTopicsForLesson(this.props.params.lessonId);
+        if (this.props.params.lessonId !== undefined) {
+            this.props.findTopicsForLesson(this.props.params.lessonId);
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -48,14 +50,14 @@ export default class TopicPillsComponent extends React.Component {
                     value={this.state.editingTopic.title}
              />
                 <button className="btn btn-danger"
-                        onClick={() => this.props.deleteTopic(topic._id)}>
+                        onClick={() => this.props.deleteTopic(topic.id)}>
                 <i className="fa fa-trash"/>
                 </button>
                 <button
                     className="btn btn-success"
                     onClick={() => {
                         this.props.updateTopic(
-                            this.state.editingTopic._id,
+                            this.state.editingTopic.id,
                             this.state.editingTopic);
                         this.setState({editingTopic: {}})
                     }
@@ -70,7 +72,7 @@ export default class TopicPillsComponent extends React.Component {
                 <span className="nav-link">
 
                     <Link
-                        to={`/editor/course/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${this.props.params.lessonId}/topics/${topic._id}`}>
+                        to={`/editor/course/${this.props.params.courseId}/modules/${this.props.params.moduleId}/lessons/${this.props.params.lessonId}/topics/${topic.id}`}>
                     {topic.title}
                     </Link>
 
@@ -93,10 +95,10 @@ export default class TopicPillsComponent extends React.Component {
                 <ul className="nav nav-pills">
                     {this.props.topics.map(
                         topic =>
-                            <div key={topic._id}>
-                                {this.renderPill(topic, this.state.editingTopic._id === topic._id,
-                                                 this.props.params.topicId === topic._id ||
-                                                 this.state.editingTopic._id === topic._id)}
+                            <div key={topic.id}>
+                                {this.renderPill(topic, this.state.editingTopic.id === topic.id,
+                                                 this.props.params.topicId == topic.id ||
+                                                 this.state.editingTopic.id == topic.id)}
                             </div>)}
 
 

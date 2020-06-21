@@ -1,21 +1,23 @@
+const url='http://localhost:8080';
+
 const findTopic = (topicId) => {
-    return fetch(`https://wbdv-generic-server.herokuapp.com/api/YOUR_NEUID/topics/${topicId}`)
+    return fetch(`${url}/api/topics/${topicId}`)
         .then(response => response.json())
 }
 
 const findTopicsForLesson = (lessonId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/YOUR_NEUID/lessons/${lessonId}/topics`)
+    fetch(`${url}/api/lessons/${lessonId}/topics`)
         .then(response => response.json())
 
 const deleteTopic = (topicId) => {
-    return fetch(`https://wbdv-generic-server.herokuapp.com/api/YOUR_NEUID/topics/${topicId}`, {
+    return fetch(`${url}/api/topics/${topicId}`, {
         method: 'DELETE'
     })
         .then(response => response.json())
 }
 
 const updateTopic = (topicId, topic) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/YOUR_NEUID/topics/${topicId}`, {
+    fetch(`${url}/api/topics/${topicId}`, {
         method: 'PUT',
         body: JSON.stringify(topic),
         headers: {
@@ -25,7 +27,7 @@ const updateTopic = (topicId, topic) =>
         .then(response => response.json())
 
 const createTopic = (lessonId, topic) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/YOUR_NEUID/lessons/${lessonId}/topics`, {
+    fetch(`${url}/api/lessons/${lessonId}/topics`, {
         method: 'POST',
         body: JSON.stringify(topic),
         headers: {

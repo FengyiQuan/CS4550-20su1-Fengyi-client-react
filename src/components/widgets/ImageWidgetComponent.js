@@ -1,14 +1,13 @@
 import React from "react";
 
-export default class HeadingWidgetComponent extends React.Component {
+export default class ImageWidgetComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             editing: false,
             name: '',
-            type: 'HEADING',
-            text: '',
-            size: 1,
+            type: 'IMAGE',
+            url: '',
             order: 1
         }
     }
@@ -17,8 +16,7 @@ export default class HeadingWidgetComponent extends React.Component {
         this.setState({
                           name: this.props.widget.name,
                           type: this.props.widget.type,
-                          text: this.props.widget.text,
-                          size: this.props.widget.size,
+                          url: this.props.widget.url,
                           order: this.props.widget.widgetOrder
                       })
     }
@@ -30,8 +28,7 @@ export default class HeadingWidgetComponent extends React.Component {
                                     name: this.state.name,
                                     type: this.state.type,
                                     widgetOrder: this.state.order,
-                                    text: this.state.text,
-                                    size: parseInt(this.state.size)
+                                    url: this.state.url
                                 });
 
     };
@@ -39,18 +36,9 @@ export default class HeadingWidgetComponent extends React.Component {
     render() {
         return <div>
             <div className={'form-row'}>
-                <h3>Heading Widget</h3>
+                <h3>Image Widget</h3>
                 {this.state.editing &&
                  <span>
-                         <select value={this.state.size}
-                                 onChange={(e) => this.setState({size: e.target.value})}>
-                        <option value="1">Heading 1</option>
-                        <option value="2">Heading 2</option>
-                        <option value="3">Heading 3</option>
-                        <option value="4">Heading 4</option>
-                        <option value="5">Heading 5</option>
-                        <option value="6">Heading 6</option>
-                    </select>
                      {
                          this.props.widget.widgetOrder !== 1 &&
                          <button className={'btn btn-warning'}
@@ -89,55 +77,27 @@ export default class HeadingWidgetComponent extends React.Component {
                 }
             </div>
             {!this.state.editing &&
-             <div>
-                 {this.state.size == 1 &&
-                  <h1>
-                      {this.props.widget.name}
-                  </h1>}
-                 {this.state.size == 2 &&
-                  <h2>
-                      {this.props.widget.name}
-                  </h2>}
-                 {this.state.size == 3 &&
-                  <h3>
-                      {this.props.widget.name}
-                  </h3>}
-                 {this.state.size == 4 &&
-                  <h4>
-                      {this.props.widget.name}
-                  </h4>}
-                 {this.state.size == 5 &&
-                  <h5>
-                      {this.props.widget.name}
-                  </h5>}
-                 {this.state.size == 6 &&
-                  <h6>
-                      {this.props.widget.name}
-                  </h6>}
-
-                 <p>
-                     {this.props.widget.text}
-                 </p>
-             </div>}
+             <img src={this.props.widget.url} alt={this.props.widget.name}/>
+            }
 
             {this.state.editing &&
              <form>
                  <div className={'form-group row'}>
                      <label className="col-md-2 col-form-label"
-                            htmlFor={`headingText${this.props.widget.id}`}>
-                         Text:
+                            htmlFor={`imageUrl${this.props.widget.url}`}>
+                         Url:
                      </label>
                      <div className={'col-md-10'}>
-                        <textarea value={this.state.text}
-                                  placeholder="Paragraph text"
+                        <textarea value={this.state.url}
+                                  placeholder="Url"
                                   className="form-control"
-                                  id={`headingText${this.props.widget.id}`}
-                                  onChange={(e) => this.setState({text: e.target.value})}/>
+                                  id={`imageUrl${this.props.widget.url}`}
+                                  onChange={(e) => this.setState({url: e.target.value})}/>
                      </div>
                  </div>
                  <div className={'form-group row'}>
                      <label className="col-md-2 col-form-label"
-                            htmlFor={`headingName${this.props.widget.id}`}>
+                            htmlFor={`imageName${this.props.widget.id}`}>
                          Widget Name:
                      </label>
                      <div className={'col-md-10'}>
@@ -145,19 +105,19 @@ export default class HeadingWidgetComponent extends React.Component {
                                 placeholder="Widget Name"
                                 className="form-control"
                                 onChange={(e) => this.setState({name: e.target.value})}
-                                id={`headingName${this.props.widget.id}`}/>
+                                id={`imageName${this.props.widget.id}`}/>
                      </div>
                  </div>
 
                  <div className={'form-group row'}>
                      <label className="col-md-2 col-form-label"
-                            htmlFor={`htype${this.props.widget.id}`}>
+                            htmlFor={`imageType${this.props.widget.id}`}>
                          Widget Type:
                      </label>
                      <div className={'col-md-10'}>
                          <select className="form-control"
                                  value={this.state.type}
-                                 id={`htype${this.props.widget.id}`}
+                                 id={`imageType${this.props.widget.id}`}
                                  onChange={(e) => this.setState({type: e.target.value})}>
                              <option value='HEADING'>Heading</option>
                              <option value='PARAGRAPH'>Paragraph</option>

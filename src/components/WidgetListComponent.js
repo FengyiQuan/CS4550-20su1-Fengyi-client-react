@@ -2,11 +2,15 @@ import React from "react";
 import HeadingWidgetComponent from "./widgets/HeadingWidgetComponent";
 import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 import YouTubeWidgetComponent from "./widgets/YouTubeWidgetComponent";
+import ImageWidgetComponent from "./widgets/ImageWidgetComponent";
 
 export default class WidgetListComponent extends React.Component {
 
     componentDidMount() {
-        this.props.findWidgetsForTopic(this.props.params.topicId);
+        if (this.props.params.topicId !== undefined) {
+            this.props.findWidgetsForTopic(this.props.params.topicId);
+        }
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -90,6 +94,16 @@ export default class WidgetListComponent extends React.Component {
                                                             moveDown={this.moveDown}
                                                             isLast={widget.widgetOrder
                                                                     === this.props.widgets.length}/>
+                                }
+                                {
+                                    widget.type === 'IMAGE' &&
+                                    <ImageWidgetComponent widget={widget}
+                                                          updateWidget={this.props.updateWidget}
+                                                          delete={this.delete}
+                                                          moveUp={this.moveUp}
+                                                          moveDown={this.moveDown}
+                                                          isLast={widget.widgetOrder
+                                                                  === this.props.widgets.length}/>
                                 }
                             </li>)
 
