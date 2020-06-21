@@ -1,4 +1,4 @@
-const url='http://localhost:8080';
+const url='https://cs4550-20su1-fengyi-ass6-srv.herokuapp.com';
 
 const findTopic = (topicId) => {
     return fetch(`${url}/api/topics/${topicId}`)

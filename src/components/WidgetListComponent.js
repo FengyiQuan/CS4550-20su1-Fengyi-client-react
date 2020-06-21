@@ -3,6 +3,7 @@ import HeadingWidgetComponent from "./widgets/HeadingWidgetComponent";
 import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 import YouTubeWidgetComponent from "./widgets/YouTubeWidgetComponent";
 import ImageWidgetComponent from "./widgets/ImageWidgetComponent";
+import ListWidgetComponent from "./widgets/ListWidget";
 
 export default class WidgetListComponent extends React.Component {
 
@@ -105,6 +106,16 @@ export default class WidgetListComponent extends React.Component {
                                                           isLast={widget.widgetOrder
                                                                   === this.props.widgets.length}/>
                                 }
+                                {
+                                    widget.type === 'LIST' &&
+                                    <ListWidgetComponent widget={widget}
+                                                         updateWidget={this.props.updateWidget}
+                                                         delete={this.delete}
+                                                         moveUp={this.moveUp}
+                                                         moveDown={this.moveDown}
+                                                         isLast={widget.widgetOrder
+                                                                 === this.props.widgets.length}/>
+                                }
                             </li>)
 
     };
@@ -126,7 +137,9 @@ export default class WidgetListComponent extends React.Component {
                                     name: 'New Widget',
                                     size: 1,
                                     text: '',
-                                    widgetOrder: this.props.widgets.length + 1
+                                    widgetOrder: this.props.widgets.length + 1,
+                                    url: '',
+                                    value: 'false'
                                 })
                             }
                         }}>

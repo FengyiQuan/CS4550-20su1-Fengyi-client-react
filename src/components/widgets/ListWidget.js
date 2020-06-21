@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class ParagraphWidgetComponent extends React.Component {
+export default class ListWidgetComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -8,7 +8,8 @@ export default class ParagraphWidgetComponent extends React.Component {
             text: '',
             widgetName: '',
             order: 1,
-            type: 'PARAGRAPH'
+            type: 'LIST',
+            value: 'false'
         }
     }
 
@@ -17,7 +18,8 @@ export default class ParagraphWidgetComponent extends React.Component {
                           text: this.props.widget.text,
                           widgetName: this.props.widget.name,
                           order: this.props.widget.widgetOrder,
-                          type: this.props.widget.type
+                          type: this.props.widget.type,
+                          value: this.props.widget.value
                       })
     }
 
@@ -28,14 +30,30 @@ export default class ParagraphWidgetComponent extends React.Component {
                                     name: this.state.widgetName,
                                     type: this.state.type,
                                     widgetOrder: this.state.order,
-                                    text: this.state.text
+                                    text: this.state.text,
+                                    value: this.state.value
                                 });
 
+    separateText = () => this.state.text.split('\n');
+
+    renderListText = () => {
+        return <div> {this.state.value === 'true' &&
+                      <ol>
+                          {this.separateText().map((li, i) => <li key={i}>{li}</li>)}
+                      </ol>}
+            {this.state.value === 'false' &&
+             <ul>
+                 {this.separateText().map((li, i) => <li key={i}>{li}</li>)}
+             </ul>}
+        </div>
+    }
+
     render() {
+        // console.log(this.state.value)
         return (
             <div>
                 <div>
-                    <h3>Paragraph Widget</h3>
+                    <h3>List Widget</h3>
                     {this.state.editing &&
                      <span className='float-right'>
                          {
@@ -80,9 +98,7 @@ export default class ParagraphWidgetComponent extends React.Component {
                      <h4>
                          {this.props.widget.name}
                      </h4>
-                     <p>
-                         {this.props.widget.text}
-                     </p>
+                     {this.renderListText()}
                  </div>}
                 {this.state.editing &&
                  <form>
@@ -114,6 +130,7 @@ export default class ParagraphWidgetComponent extends React.Component {
                          </div>
                      </div>
 
+
                      <div className={'form-group row'}>
                          <label className="col-md-2 col-form-label"
                                 htmlFor={`ParaType${this.props.widget.id}`}>
@@ -128,6 +145,22 @@ export default class ParagraphWidgetComponent extends React.Component {
                                  <option value='PARAGRAPH'>Paragraph</option>
                                  <option value='IMAGE'>Image</option>
                                  <option value='LIST'>List</option>
+                             </select>
+                         </div>
+                     </div>
+
+                     <div className={'form-group row'}>
+                         <label className="col-md-2 col-form-label"
+                                htmlFor={`ParaType${this.props.widget.id}`}>
+                             List Type:
+                         </label>
+                         <div className={'col-md-10'}>
+                             <select className="form-control"
+                                     value={this.state.value}
+                                     id={`ParaValue${this.props.widget.id}`}
+                                     onChange={(e) => this.setState({value: e.target.value})}>
+                                 <option value='true'>Ordered List</option>
+                                 <option value='false'>Unordered List</option>
                              </select>
                          </div>
                      </div>

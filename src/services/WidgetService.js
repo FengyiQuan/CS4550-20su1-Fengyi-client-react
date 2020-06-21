@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080';
+const url = 'https://cs4550-20su1-fengyi-ass6-srv.herokuapp.com';
 
 export const findWidgetsForTopic = (tid) =>
     fetch(`${url}/api/topics/${tid}/widgets`)
